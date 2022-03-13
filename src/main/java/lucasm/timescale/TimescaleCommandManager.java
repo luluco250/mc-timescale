@@ -46,12 +46,11 @@ final class TimescaleCommandManager {
 	}
 
 	private Text getCommandReply(TimescaleConfig config) {
-		var reply = String.format(
-		"Delay: %d\nStride: %d\nScale: %f",
-		config.getDelay(),
-		config.getStride(),
-		config.calculateTimeScale()
-		);
-		return Text.of(reply);
+		return Text.of(String.format(
+			"Delay: %d\nStride: %d\nTimescale: %d%%",
+			config.getDelay(),
+			config.getStride(),
+			Math.round(config.calculateTimeScale() * 100f)
+		));
 	}
 }
